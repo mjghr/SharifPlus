@@ -1,15 +1,15 @@
-package Model;
+package Utils;
 
+import Controller.UserController;
+import Model.User;
 import com.google.gson.Gson;
-
-import java.awt.print.Book;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+
 
 public class JsonManager {
     private static final Gson gson = new Gson();
@@ -21,6 +21,22 @@ public class JsonManager {
 
             // convert books object to JSON file
             gson.toJson(list, writer);
+
+            // close writer
+            writer.close();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void writeUsersToJson() {
+        try {
+
+            Writer writer = Files.newBufferedWriter(Paths.get("users.json"));
+
+            // convert books object to JSON file
+            gson.toJson(UserController.getUsers(), writer);
 
             // close writer
             writer.close();

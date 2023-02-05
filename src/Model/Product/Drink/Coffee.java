@@ -1,7 +1,6 @@
 package Model.Product.Drink;
 
-import Model.DrinkType;
-import Model.Ingredient;
+import Utils.Ingredient;
 
 public class Coffee extends Drink {
     private final Ingredient[] ingredients = new Ingredient[]{Ingredient.Coffee};

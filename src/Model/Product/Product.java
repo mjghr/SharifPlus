@@ -1,6 +1,6 @@
 package Model.Product;
 
-import Model.Ingredient;
+import Utils.Ingredient;
 
 public abstract class Product {
     public abstract Ingredient[] getIngredient();

@@ -1,6 +1,6 @@
 package Model.Product.Dessert;
 
-import Model.Ingredient;
+import Utils.Ingredient;
 
 public class ChocolateCake extends Dessert {
     private Ingredient[] ingredients = new Ingredient[]{Ingredient.Chocolate, Ingredient.Sugar};
