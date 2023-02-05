@@ -1,5 +1,5 @@
 package Model.Product.Food;
-import Model.Ingredient;
+import Utils.Ingredient;
 
 public class Pizza extends Food {
     private Ingredient[] ingredients = new Ingredient[]{Ingredient.Meat, Ingredient.Bread, Ingredient.Cheese};

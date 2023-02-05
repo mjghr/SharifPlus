@@ -1,7 +1,7 @@
 package Model.Product.Drink;
 
-import Model.DrinkType;
-import Model.Ingredient;
+import Utils.DrinkType;
+import Utils.Ingredient;
 
 public class Tea extends Drink {
     private DrinkType type = DrinkType.Hot;

@@ -1,6 +1,6 @@
 package Model.Product.Drink;
 
-import Model.Ingredient;
+import Utils.Ingredient;
 import Model.Product.Product;
 
 

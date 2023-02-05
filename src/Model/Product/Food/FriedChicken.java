@@ -1,6 +1,6 @@
 package Model.Product.Food;
 
-import Model.Ingredient;
+import Utils.Ingredient;
 
 public class FriedChicken extends Food {
     private Ingredient[] ingredients = new Ingredient[]{Ingredient.Chicken, Ingredient.Cheese, Ingredient.Potato};
