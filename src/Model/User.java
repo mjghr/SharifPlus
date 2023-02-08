@@ -1,13 +1,11 @@
 package Model;
 
-import Controller.UserController;
-
 import java.util.ArrayList;
 
 public class User {
 
     private String username;
-    private ArrayList<Order> userOrders = new ArrayList<Order>();
+    private ArrayList<Order> userOrders = new ArrayList<>();
     private String type;
     private String password;
 

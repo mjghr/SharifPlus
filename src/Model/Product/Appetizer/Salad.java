@@ -3,11 +3,32 @@ package Model.Product.Appetizer;
 import Utils.Ingredient;
 
 public class Salad extends Appetizer {
-    private Ingredient[] ingredients = new Ingredient[]{Ingredient.Meat, Ingredient.Bread, Ingredient.Vegetable};
+    private Ingredient[] ingredients = new Ingredient[]{Ingredient.Bread, Ingredient.Vegetable};
     private String name = "Salad";
 
+    private boolean isAvailable = true;
+
     @Override
-    public Ingredient[] getIngredient() {
-        return ingredients;
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public boolean isAvailable() {
+        return false;
+    }
+
+    @Override
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+    @Override
+    public void printIngredient() {
+        System.out.println("This product contains of:");
+        for (int i = 0; i < ingredients.length; i++) {
+            System.out.print(ingredients[i].name() + " ");
+        }
+        System.out.println();
     }
 }

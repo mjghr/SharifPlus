@@ -2,6 +2,7 @@ package Model;
 
 import Controller.UserController;
 import Model.Product.Product;
+import Utils.JsonManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,9 @@ public class Order {
 
     private String id;
     private UserController user;
-    private List<Product> productList;
+    private ArrayList<Product> productList;
 
-    public Order(UserController user, List<Product> productList) {
+    public Order(UserController user, ArrayList<Product> productList) {
         this.id = UUID.randomUUID().toString();
         this.user = user;
         this.productList = productList;
@@ -41,11 +42,11 @@ public class Order {
         this.user = user;
     }
 
-    public List<Product> getProductList() {
+    public ArrayList<Product> getProductList() {
         return productList;
     }
 
-    public void setProductList(List<Product> productList) {
+    public void setProductList(ArrayList<Product> productList) {
         this.productList = productList;
     }
 

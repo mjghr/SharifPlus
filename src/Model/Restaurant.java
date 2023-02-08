@@ -2,6 +2,7 @@ package Model;
 
 import Model.Product.Dessert.VanillaCake;
 import Model.Product.Drink.*;
+import Model.Product.Food.Burger;
 import Model.Product.Food.Pizza;
 import Model.Product.Product;
 
@@ -11,7 +12,7 @@ import java.util.HashMap;
 public class Restaurant {
     private HashMap<String, Product> restaurantProducts = new HashMap<>() {{
         put("pizza", new Pizza());
-        put("burger", new Tea());
+        put("burger", new Burger());
         put("steak", new HotChocolate());
         put("fried-chicken", new Soda());
         put("salad", new Water());

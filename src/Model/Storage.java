@@ -27,6 +27,7 @@ public class Storage {
 
     }};
 
+
     private static int randomNumber() {
         Random random = new Random();
         int num = random.nextInt(10);
@@ -42,4 +43,5 @@ public class Storage {
     public void setItems(HashMap<Ingredient, Integer> items) {
         this.items = items;
     }
+
 }
