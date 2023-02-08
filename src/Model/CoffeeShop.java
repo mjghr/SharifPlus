@@ -1,6 +1,5 @@
 package Model;
 
-import Controller.UserController;
 import Model.Product.Dessert.ChocolateCake;
 import Model.Product.Dessert.IceCream;
 import Model.Product.Dessert.VanillaCake;
@@ -21,7 +20,6 @@ public class CoffeeShop {
         put("chocolate-cake", new ChocolateCake());
         put("ice-cream", new IceCream());
     }};
-
     private ArrayList<String> coffeeShopProductsNames = new ArrayList<>(coffeeShopProducts.keySet());
 
 
