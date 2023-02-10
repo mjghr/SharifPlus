@@ -2,8 +2,10 @@ package Controller;
 
 import Utils.Ingredient;
 import Model.Storage;
+import Utils.JsonManager;
 import Utils.TextFormatter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -13,6 +15,18 @@ public class StorageController {
 
     public StorageController() {
         this.model = new Storage();
+        checkItems();
+    }
+
+    private void checkItems(){
+        ArrayList<Ingredient> gg = JsonManager.readStorageFromJson();
+        HashMap<Ingredient,Integer> map = new HashMap<>();
+
+        for (int i = 0; i < gg.size(); i++) {
+            map.put(gg.get(i), randomNumber());
+        }
+
+        model.setItems(map);
     }
 
     public boolean isIngredientAvailable(Ingredient ing) {

@@ -4,14 +4,11 @@ import Utils.Ingredient;
 import Model.Product.Product;
 
 public abstract class Appetizer extends Product {
-    private Ingredient[] ingredients;
+    public abstract Ingredient[] getIngredient();
 
     public abstract String getName();
-    public Ingredient[] getIngredient() {
-        return ingredients;
-    }
 
+    public abstract boolean isAvailable();
     public abstract void setAvailable(boolean available);
-
     public abstract void printIngredient();
 }

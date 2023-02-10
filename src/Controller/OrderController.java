@@ -10,26 +10,31 @@ import java.util.ArrayList;
 public class OrderController {
     private static ArrayList<Order> orders = new ArrayList<>();
 
-    private static void addToOrders(Order order){
-        JsonManager.writeArrToJson(orders,"orders.json");
-    }
-    public static void readOrdersFromJson() {
-        orders = JsonManager.readOrderFromJson("orders.json");
-    }
-
     public static void removeOrder(Order order) {
         orders.remove(order);
         order.getUser().removeUserOrder(order);
+        JsonManager.writeLogToText("Order with id= \"" + order.getId() + "\" was deleted.");
     }
 
-    public static void viewOrders() {
-        if (orders.size()==0){
+    public static String printOrderProducts(Order order) {
+        String str = "";
+        for (Product product : order.getProductList()) {
+            str += product.getName() + " ";
+        }
+        return "[ " + str + "]";
+    }
+
+
+    public static boolean viewOrders() {
+        if (orders.size() == 0) {
             System.out.println(TextFormatter.RED + "No orders submitted so far." + TextFormatter.RESET);
-            return;
+            return false;
         }
         for (int i = 0; i < orders.size(); i++) {
-            System.out.println((i + 1) + "- " + orders.get(i).toString());
+            System.out.println((i + 1) + "- " + orders.get(i).toString() + ", " + printOrderProducts(orders.get(i)));
         }
+        return true;
+
     }
 
     public static Order getOrderById(String id) {
@@ -44,7 +49,7 @@ public class OrderController {
         Order order = new Order(user, productList);
         user.addUserOrder(order);
         orders.add(order);
-        JsonManager.writeArrToJson(orders, "orders.json");
+        JsonManager.writeLogToText("User \"" + user.getUserUsername() + "\" has Ordered " + printOrderProducts(order));
     }
 
     public static ArrayList<Order> getOrders() {

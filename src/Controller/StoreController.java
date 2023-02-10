@@ -12,7 +12,7 @@ public abstract class StoreController {
     private static Store model = new Store();
 
     public abstract void getMenu();
-    public abstract void addOrder();
+    public abstract void addOrder(UserController user, ArrayList<Product> productList);
 
     static void setAvailability(HashMap<Ingredient, Integer> map, ArrayList<Product> products) {
         for (int i = 0; i < products.size(); i++) {

@@ -20,16 +20,19 @@ public class CoffeeShopController extends StoreController {
     public void getMenu() {
         System.out.println(TextFormatter.BLUE_BRIGHT + "\nHere's our CoffeeShop's menu:" + TextFormatter.RESET);
         System.out.println(TextFormatter.WHITE_BRIGHT + "\nDrinks:\n\tHot:\n\t\t-Coffee "
-                + printAvailability("coffee") + "\n\t\t-Tea " + printAvailability("tea") + "\n\t\t-Hot chocolate "
-                + printAvailability("hot-chocolate") + "\n\tcold:\n\t\t-Soda " + printAvailability("soda") + "\n\t\t-Water "
-                + printAvailability("water") + TextFormatter.RESET);
+                + printAvailability("coffee") + TextFormatter.WHITE_BRIGHT + "\n\t\t-Tea " + printAvailability("tea")
+                + TextFormatter.WHITE_BRIGHT + "\n\t\t-Hot chocolate " + printAvailability("hot-chocolate") + TextFormatter.WHITE_BRIGHT
+                + "\n\tcold:\n\t\t-Soda " + printAvailability("soda") + TextFormatter.WHITE_BRIGHT + "\n\t\t-Water "
+                + printAvailability("water") + TextFormatter.WHITE_BRIGHT + TextFormatter.RESET);
         System.out.println(TextFormatter.WHITE_BRIGHT + "Desserts:\n\t-Chocolate cake " + printAvailability("chocolate-cake")
-                + "\n\t-Vanilla cake " + printAvailability("vanilla-cake") + "\n\t-Ice cream " + printAvailability("ice-cream") + TextFormatter.RESET);
+                + TextFormatter.WHITE_BRIGHT + "\n\t-Vanilla cake " + printAvailability("vanilla-cake")
+                + TextFormatter.WHITE_BRIGHT + "\n\t-Ice cream " + printAvailability("ice-cream") + TextFormatter.WHITE_BRIGHT
+                + TextFormatter.RESET);
     }
 
     @Override
-    public void addOrder() {
-
+    public void addOrder(UserController user, ArrayList<Product> productList) {
+        OrderController.addOrder(user, productList);
     }
 
     private String printAvailability(String str) {

@@ -2,10 +2,8 @@ package Model;
 
 import Controller.UserController;
 import Model.Product.Product;
-import Utils.JsonManager;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class Order {

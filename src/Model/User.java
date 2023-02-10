@@ -15,6 +15,10 @@ public class User {
         this.password = password;
     }
 
+    public void getUserAgain(){
+
+    }
+
 
     public String getUsername() {
         return username;

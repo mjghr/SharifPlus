@@ -15,7 +15,12 @@ public class Salad extends Appetizer {
 
     @Override
     public boolean isAvailable() {
-        return false;
+        return isAvailable;
+    }
+
+    @Override
+    public Ingredient[] getIngredient() {
+        return ingredients;
     }
 
     @Override
