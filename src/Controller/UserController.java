@@ -16,17 +16,19 @@ public class UserController {
     public UserController(User model, boolean dontWrite) {
         this.model = model;
         if (!dontWrite) {
-            writeToFile();
+//            writeToFile();
         }
     }
 
-    public static void writeToFile(){
-        JsonManager.writeArrToJson(users, "users.json");
+    public static void writeToFile() {
+        JsonManager.writeArrToJson(users, "src\\resources\\users.json");
     }
 
 
     public static void readUsersFromJson() {
-        users = JsonManager.readUsersFromJson("users.json");
+        if (JsonManager.readUsersFromJson("src\\resources\\users.json") != null) {
+            users = JsonManager.readUsersFromJson("src\\resources\\users.json");
+        }
     }
 
     public static UserController createAccount(Scanner myScanner) {
@@ -62,6 +64,7 @@ public class UserController {
                             System.out.println(TextFormatter.GREEN_BRIGHT + "\nYou've successfully created an account." + TextFormatter.RESET);
                             System.out.println(TextFormatter.GREEN_BRIGHT + "Logging in as " + name + "..." + TextFormatter.RESET);
                             users.add(new User(name, type, password));
+                            JsonManager.writeLogToText("User created: type= \"" + type + "\" username= \"" + name + "\" password= \"" + password + "\".");
                             return new UserController(new User(name, type, password), false);
                         }
                     }
@@ -90,6 +93,7 @@ public class UserController {
                     if (!password.equals(currentUser.getPassword())) {
                         System.out.println(TextFormatter.RED + "Wrong password, please try again." + TextFormatter.RESET);
                     } else {
+                        JsonManager.writeLogToText("User \"" + name + "\" has logged in.");
                         System.out.println(TextFormatter.GREEN_BRIGHT + "\nYou've successfully logged in." + TextFormatter.RESET);
                         users.add(currentUser);
                         return new UserController(currentUser, true);

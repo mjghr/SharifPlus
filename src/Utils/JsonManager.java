@@ -1,14 +1,21 @@
 package Utils;
 
 import Model.Order;
+import Model.Product.Product;
 import Model.User;
 import com.google.gson.Gson;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 
 public class JsonManager {
@@ -30,7 +37,8 @@ public class JsonManager {
         }
     }
 
-    public static ArrayList<User> readUsersFromJson(String path){
+
+    public static ArrayList<User> readUsersFromJson(String path) {
         try {
             // create Gson instance
             Gson gson = new Gson();
@@ -56,7 +64,12 @@ public class JsonManager {
         }
     }
 
-    public static ArrayList<User> readOrdersFromJson(String path){
+    public static void writeMapArrToFile(HashMap<Ingredient, Integer> map) {
+        ArrayList<Ingredient> ingredients = new ArrayList<>(map.keySet());
+        writeArrToJson(ingredients, "src\\resources\\storageIngredients.json");
+    }
+
+    public static ArrayList<User> readOrdersFromJson(String path) {
         try {
             // create Gson instance
             Gson gson = new Gson();
@@ -82,7 +95,7 @@ public class JsonManager {
         }
     }
 
-    public static ArrayList<Order> readOrderFromJson(String path){
+    public static ArrayList<Order> readOrderFromJson(String path) {
         try {
             // create Gson instance
             Gson gson = new Gson();
@@ -105,6 +118,43 @@ public class JsonManager {
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
+        }
+    }
+
+    public static ArrayList<Ingredient> readStorageFromJson() {
+        try {
+            // create Gson instance
+            Gson gson = new Gson();
+
+            // create a reader
+            Reader reader = Files.newBufferedReader(Paths.get("src\\resources\\storageIngredients.json"));
+
+            // convert JSON array to list of books
+            ArrayList<Ingredient> userss = new ArrayList<>();
+            try {
+                userss.addAll(Arrays.asList(gson.fromJson(reader, Ingredient[].class)));
+                reader.close();
+            } catch (NullPointerException e) {
+                System.out.println("Null khordi kos khol.");
+                reader.close();
+            }
+
+            return userss;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void writeLogToText(String str) {
+        try {
+            LocalDateTime dateTime = LocalDateTime.now();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            FileWriter writer = new FileWriter("log.txt", true);
+            writer.write(dtf.format(dateTime) + " => " + str + "\n");
+            writer.close();
+        } catch (IOException e) {
         }
     }
 }

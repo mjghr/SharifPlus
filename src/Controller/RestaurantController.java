@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Product.Product;
 import Utils.Ingredient;
+import Utils.JsonManager;
 import Utils.TextFormatter;
 import Model.Restaurant;
 
@@ -19,20 +20,22 @@ public class RestaurantController extends StoreController {
     @Override
     public void getMenu() {
         System.out.println(TextFormatter.BLUE_BRIGHT + "\nHere's our Restaurant's menu:" + TextFormatter.RESET);
-        System.out.println(TextFormatter.WHITE_BRIGHT+ "\nFoods:\n\t-Pizza "
-                + printAvailability("pizza") + "\n\t-Burger " + printAvailability("burger")
-                + "\n\t-Steak " + printAvailability("steak") + "\n\t-Fried chicken " + printAvailability("fried-chicken")+TextFormatter.RESET);
-        System.out.println(TextFormatter.WHITE_BRIGHT + "Appetizer:\n\t-Salad " + printAvailability("salad")
-                + "\n\t-French fries " + printAvailability("french-fries")+TextFormatter.RESET);
+        System.out.println(TextFormatter.WHITE_BRIGHT + "\nFoods:\n\t-Pizza "
+                + printAvailability("pizza") + TextFormatter.WHITE_BRIGHT + "\n\t-Burger " + printAvailability("burger")
+                + TextFormatter.WHITE_BRIGHT + "\n\t-Steak " + printAvailability("steak") + TextFormatter.WHITE_BRIGHT
+                + "\n\t-Fried chicken " + printAvailability("fried-chicken") + TextFormatter.WHITE_BRIGHT + TextFormatter.RESET);
+        System.out.println(TextFormatter.WHITE_BRIGHT + "Appetizer:\n\t-Salad " + printAvailability("salad") + TextFormatter.WHITE_BRIGHT
+                + "\n\t-French fries " + printAvailability("french-fries") + TextFormatter.WHITE_BRIGHT + TextFormatter.RESET);
         System.out.println(TextFormatter.WHITE_BRIGHT + "Drinks:\n\tHot:\n\t\t-Coffee "
-                + printAvailability("coffee") + "\n\t\t-Tea " + printAvailability("tea") + "\n\t\t-Hot chocolate "
-                + printAvailability("hot-chocolate") + "\n\tcold:\n\t\t-Soda " + printAvailability("soda") + "\n\t\t-Water "
-                + printAvailability("water")+TextFormatter.RESET);
+                + printAvailability("coffee") + TextFormatter.WHITE_BRIGHT + "\n\t\t-Tea " + printAvailability("tea")
+                + TextFormatter.WHITE_BRIGHT + "\n\t\t-Hot chocolate " + printAvailability("hot-chocolate") + TextFormatter.WHITE_BRIGHT
+                + "\n\tcold:\n\t\t-Soda " + printAvailability("soda") + TextFormatter.WHITE_BRIGHT + "\n\t\t-Water "
+                + printAvailability("water") + TextFormatter.WHITE_BRIGHT + TextFormatter.RESET);
     }
 
     @Override
-    public void addOrder() {
-
+    public void addOrder(UserController user, ArrayList<Product> productList) {
+        OrderController.addOrder(user, productList);
     }
 
     private String printAvailability(String str) {

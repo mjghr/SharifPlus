@@ -3,7 +3,7 @@ package Model.Product.Food;
 import Utils.Ingredient;
 
 public class Burger extends Food {
-    private Ingredient[] ingredients = new Ingredient[]{Ingredient.Bread, Ingredient.Vegetable};
+    private Ingredient[] ingredients = new Ingredient[]{Ingredient.Meat, Ingredient.Bread};
     private String name = "Burger";
 
     private boolean isAvailable = true;

@@ -19,7 +19,6 @@ public class CLI {
 
     public CLI() {
         UserController.readUsersFromJson();
-        OrderController.readOrdersFromJson();
 
         System.out.println(TextFormatter.GREEN_BRIGHT + "\nWelcome to SharifPlus!" + TextFormatter.RESET);
         System.out.println("\n" + TextFormatter.YELLOW_BRIGHT + "-You can always go back to the previous page by typing \"back\"."
@@ -106,7 +105,7 @@ public class CLI {
                                             storageController.decreaseIngredient(ingredients[j], 1);
                                         }
                                     }
-                                    OrderController.addOrder(userController, productList);
+                                    restaurantController.addOrder(userController, productList);
                                     c:
                                     while (true) {
                                         System.out.println("would you like to order anything else? (y/n)");
@@ -179,7 +178,7 @@ public class CLI {
                                         }
                                     }
 
-                                    OrderController.addOrder(userController, productList);
+                                    coffeeShopController.addOrder(userController, productList);
                                     c:
                                     while (true) {
                                         System.out.println("would you like to order anything else? (y/n)");
@@ -257,37 +256,38 @@ public class CLI {
                             System.out.println("You're logging out of your account...");
                             break cc;
                         } else if (answer.equals("1")) {
-                            OrderController.viewOrders();
-                            k:
-                            while (true) {
-                                System.out.println("Would you like to cancel any orders? (y/n)");
-                                answer = myScanner.nextLine().toLowerCase();
-                                if (answer.equals("back")) {
-                                    break k;
-                                } else if (answer.equals("logout")) {
-                                    break cc;
-                                } else if (answer.equals("y") || answer.equals("yes")) {
-                                    l:
-                                    while (true) {
-                                        System.out.println("Enter the id of the order you want to be cancelled.");
-                                        answer = myScanner.nextLine().toLowerCase();
-                                        if (answer.equals("logout")) {
-                                            break cc;
-                                        } else if (answer.equals("back")) {
-                                            break l;
+                            if(OrderController.viewOrders()) {
+                                k:
+                                while (true) {
+                                    System.out.println("Would you like to cancel any orders? (y/n)");
+                                    answer = myScanner.nextLine().toLowerCase();
+                                    if (answer.equals("back")) {
+                                        break k;
+                                    } else if (answer.equals("logout")) {
+                                        break cc;
+                                    } else if (answer.equals("y") || answer.equals("yes")) {
+                                        l:
+                                        while (true) {
+                                            System.out.println("Enter the id of the order you want to be cancelled.");
+                                            answer = myScanner.nextLine().toLowerCase();
+                                            if (answer.equals("logout")) {
+                                                break cc;
+                                            } else if (answer.equals("back")) {
+                                                break l;
+                                            }
+                                            Order order = OrderController.getOrderById(answer);
+                                            if (order == null) {
+                                                System.out.println(TextFormatter.RED + "No order found with the id given. please try again." + TextFormatter.RESET);
+                                            } else {
+                                                OrderController.removeOrder(order);
+                                                System.out.println(TextFormatter.GREEN_BRIGHT + "\nOrder successfully deleted." + TextFormatter.RESET);
+                                                break l;
+                                            }
                                         }
-                                        Order order = OrderController.getOrderById(answer);
-                                        if (order == null) {
-                                            System.out.println(TextFormatter.RED + "No order found with the id given. please try again." + TextFormatter.RESET);
-                                        } else {
-                                            OrderController.removeOrder(order);
-                                            System.out.println(TextFormatter.GREEN_BRIGHT + "\nOrder successfully deleted." + TextFormatter.RESET);
-                                            break l;
-                                        }
+                                    } else if (answer.equals("n") || answer.equals("no")) {
+                                        System.out.println(TextFormatter.GREEN_BRIGHT + "\nGoing back to the first page..." + TextFormatter.GREEN);
+                                        break k;
                                     }
-                                } else if (answer.equals("n") || answer.equals("no")) {
-                                    System.out.println(TextFormatter.GREEN_BRIGHT + "\nGoing back to the first page..." + TextFormatter.GREEN);
-                                    break k;
                                 }
                             }
                         } else if (answer.equals("2")) {
@@ -328,6 +328,7 @@ public class CLI {
                                                     int amount = Integer.parseInt(answer);
                                                     if (storageController.increaseIngredient(ing, amount)) {
                                                         System.out.println(TextFormatter.GREEN_BRIGHT + "\nThe amount of " + ing.name() + " increased by " + amount + "." + TextFormatter.RESET);
+                                                        JsonManager.writeLogToText("Admin \"" + userController.getUserUsername() + "\" increased Ingredient \"" + ing.name() + "\" by " + amount + ".");
                                                         break o;
                                                     }
                                                 } catch (NumberFormatException e) {
@@ -358,6 +359,7 @@ public class CLI {
                                                         int amount = Integer.parseInt(answer);
                                                         storageController.decreaseAllIngredients(amount);
                                                         System.out.println(TextFormatter.GREEN_BRIGHT + "The amount of all decreased by " + amount + TextFormatter.RESET);
+                                                        JsonManager.writeLogToText("Admin \"" + userController.getUserUsername() + "\" decreased all Ingredients by " + amount);
                                                         break hh;
                                                     } catch (NumberFormatException e) {
                                                         System.out.println(TextFormatter.RED + "Invalid input, please enter a number." + TextFormatter.RESET);
@@ -377,6 +379,7 @@ public class CLI {
                                                         int amount = Integer.parseInt(answer);
                                                         if (storageController.increaseAllIngredients(amount)) {
                                                             System.out.println(TextFormatter.GREEN_BRIGHT + "The amount of all increased by " + amount + TextFormatter.RESET);
+                                                            JsonManager.writeLogToText("Admin \"" + userController.getUserUsername() + "\" increased all Ingredients by " + amount);
                                                             break hh;
                                                         }
                                                     } catch (NumberFormatException e) {

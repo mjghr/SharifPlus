@@ -12,13 +12,18 @@ public class Fries extends Appetizer {
 
 
     @Override
+    public Ingredient[] getIngredient() {
+        return ingredients;
+    }
+
+    @Override
     public String getName() {
         return name;
     }
 
     @Override
     public boolean isAvailable() {
-        return false;
+        return isAvailable;
     }
 
     @Override

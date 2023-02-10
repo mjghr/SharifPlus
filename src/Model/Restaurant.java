@@ -1,8 +1,11 @@
 package Model;
 
+import Model.Product.Appetizer.Fries;
+import Model.Product.Appetizer.Salad;
 import Model.Product.Dessert.VanillaCake;
 import Model.Product.Drink.*;
 import Model.Product.Food.Burger;
+import Model.Product.Food.FriedChicken;
 import Model.Product.Food.Pizza;
 import Model.Product.Product;
 
@@ -14,9 +17,9 @@ public class Restaurant {
         put("pizza", new Pizza());
         put("burger", new Burger());
         put("steak", new HotChocolate());
-        put("fried-chicken", new Soda());
-        put("salad", new Water());
-        put("french-fries", new VanillaCake());
+        put("fried-chicken", new FriedChicken());
+        put("salad", new Salad());
+        put("french-fries", new Fries());
         put("coffee", new Coffee());
         put("tea", new Tea());
         put("hot-chocolate", new HotChocolate());
