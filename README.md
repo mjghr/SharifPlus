@@ -71,5 +71,3 @@ java -cp out;lib\gson-2.8.6.jar Main
 - `Model/Restaurant` has a likely typo mapping: `"steak"` points to `HotChocolate` instead of a Steak product.
 - `Utils/JsonManager` contains some informal console messages that could be cleaned for production.
 
-### License
-No license file was provided. Add one if you intend to distribute.
